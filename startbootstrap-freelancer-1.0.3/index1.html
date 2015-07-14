@@ -19,7 +19,13 @@
             </table>
         </div>
     </section>
-
+    <template id="areas">
+        <table border="1">
+            <tr>
+                <td><div onclick="fetchImgContainer()"></div></td>
+            </tr>
+        </table>
+    </template>
     <br/><br /><br />
 
    <!-- <button type ="button" onclick="fetchImgContainer()">show images</button>-->
@@ -59,9 +65,8 @@
         function mapImagesToRegion(regionA) {
             var imgC = document.getElementById("picsContainer");
 
-            //cleanup previous template contents
-            removeCurrentTemplateContents("templCont");
-
+            //cleanup previous template contents           
+            document.getElementById("templCont").innerHTML = "";
             for (var i = 0; i < regionA.length; i++) {
                 
                 imgC.content.querySelector('img').src = "img/" + regionA[i];
@@ -70,17 +75,19 @@
                 var clone = document.importNode(imgC.content, true);
                 //append newly created markup to DOM
                 //document.body.appendChild(clone);
-                document.getElementById("templCont").appendChild(clone);
-            }
+                document.getElementById("templCont").appendChild(clone);                
+            }            
         }
 
-        function removeCurrentTemplateContents(parentId) {            
-            var list = document.getElementById(parentId);
-            var childNodeCount = list.childElementCount;
-            for (var i = 0; i < childNodeCount; i++) {
-                list.removeChild(list.childNodes[i]);
-            }
-        }
+//        function removeCurrentTemplateContents(parentId) {            
+
+////            document.getElementById(parentId).innerHTML = "Paragraph changed!";
+//            var list = document.getElementById(parentId);
+//            var childNodeCount = list.childElementCount;
+//            for (var i = 0; i < childNodeCount; i++) {
+//                list.removeChild(list.childNodes[i]);
+//            }
+//        }
     </script>
 </body>
 
