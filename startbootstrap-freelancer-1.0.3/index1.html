@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>    
+    <section>
+        <div id="regionsSpace">
+            <table border="1">
+                <tr>
+                    <td><div id="NW" onclick="fetchImgContainer()">North West</div></td>
+                    <td><div id="NE" onclick="fetchImgContainer()">North East</div></td>
+                    <td><div id="AFR" onclick="fetchImgContainer()">Africa</div></td>
+                    <td><div id="EA" onclick="fetchImgContainer()">East Asia</div></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <br/><br /><br />
+
+   <!-- <button type ="button" onclick="fetchImgContainer()">show images</button>-->
+    
+    <template id="picsContainer">
+        <img src="" alt="image">
+        <div class="comment"></div>
+    </template>
+
+    <div id="templCont">
+    </div>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script>
+        //function that renders container with images
+        function fetchImgContainer() {
+            var NW = ["smiley_face.jpg", "smiley_face.jpg", "smiley_face.jpg", "smiley_face.jpg"];
+            var NE = ["profile.png", "profile.png", "profile.png", "profile.png"];
+            var AFR = [];
+            var EA = [];
+
+            //populate the sources at run time
+            if (event.target.id === "NW") {
+                mapImagesToRegion(NW);
+            }
+            else if (event.target.id === "NE") {
+                mapImagesToRegion(NE);
+            }
+            else if (event.target.id === "AFR") {
+                mapImagesToRegion(AFR);
+            }
+            else if (event.target.id === "EA") {
+                mapImagesToRegion(EA);
+            }
+        }
+
+        function mapImagesToRegion(regionA) {
+            var imgC = document.getElementById("picsContainer");
+
+            //cleanup previous template contents
+            removeCurrentTemplateContents("templCont");
+
+            for (var i = 0; i < regionA.length; i++) {
+                
+                imgC.content.querySelector('img').src = "img/" + regionA[i];
+
+                //create a deep copy of the template contents
+                var clone = document.importNode(imgC.content, true);
+                //append newly created markup to DOM
+                //document.body.appendChild(clone);
+                document.getElementById("templCont").appendChild(clone);
+            }
+        }
+
+        function removeCurrentTemplateContents(parentId) {            
+            var list = document.getElementById(parentId);
+            var childNodeCount = list.childElementCount;
+            for (var i = 0; i < childNodeCount; i++) {
+                list.removeChild(list.childNodes[i]);
+            }
+        }
+    </script>
+</body>
+
+</html>
