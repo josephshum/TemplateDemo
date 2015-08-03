@@ -10,7 +10,7 @@
     <link href="css/navbar.css" rel="stylesheet">
 </head>
 
-<body>    
+<body>
     <div class="container">
         <!-- Static navbar -->
         <nav class="navbar navbar-default">
@@ -60,35 +60,37 @@
         </div>
         <div class="jumbotron">
             <div id="regionsSpace">
-                
+
             </div>
         </div>
         <div class="jumbotron">
             <div id="imgContainer">
-                          
+                <table>
+                    <tr></tr>
+                </table>
             </div>
         </div>
-    </div>       
-    
-    <br/><br /><br />
-        
+    </div>
+
+    <br /><br /><br />
+
     <!--<button type ="button" onclick="fetchImgContainer()">show images</button>-->
     <!--this template is used to host regions -->
     <template id="regionsTemplate">
-        <ul class="list-group">            
-        </ul>
+        <ul class="list-group"></ul>
     </template>
 
     <!--this template is used to host pictures -->
     <template id="picsTemplate">
+        <td>
             <img src="" alt="image">
             <div class="comment"></div>
+        </td>
     </template>
-   
-  
+
+
     <!--<div id="imgContainer">
     </div>-->
-    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -103,7 +105,7 @@
 
         var _imgSize;
 
-        //function that renders the table with choices. 
+        //function that renders the table with choices.
         (function renderRegionsTable() {
 
             if ('content' in document.createElement('template')) {
@@ -111,7 +113,7 @@
                 var regionsArr = [
                     {
                         name: "North West",
-                        abbr: "NW"                        
+                        abbr: "NW"
                     },
                     {
                         name: "North East",
@@ -126,9 +128,9 @@
                         abbr: "EA"
                     }
                 ];
-     
+
                 var regCont = document.getElementById("regionsTemplate");
-               // var td = regCont.querySelector('td');
+                // var td = regCont.querySelector('td');
                 document.getElementById("regionsSpace").innerHTML = "";
 
                 for (var k = 0; k < regionsArr.length; k++) {
@@ -148,8 +150,8 @@
                         }
                     })();
                     //regCont.innerHTML = '<td>' + '<div id="' + regionsArr[k].abbr + '"onclick="fetchImgContainer()">' + regionsArr[k].name + '</div' + '</td>';
-                    regCont.innerHTML = '<li class="list-group-item"><span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"'+'class="badge">' + _imgSize + '</span> '+ regionsArr[k].name + '</li>';
-                                        
+                    regCont.innerHTML = '<li class="list-group-item"><span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + _imgSize + '</span> ' + regionsArr[k].name + '</li>';
+
                     //regCont.content.querySelector('div').innerHTML = regionsArr[k];
 
                     var clone = document.importNode(regCont.content, true);
@@ -162,11 +164,11 @@
         })();
 
         //function that renders container with images
-        function fetchImgContainer() {                     
+        function fetchImgContainer() {
             //populate the sources at run time
             if (event.target.id === "NW") {
                 mapImagesToRegion(NW);
-                _imgSize = NW.length;                
+                _imgSize = NW.length;
             }
             else if (event.target.id === "NE") {
                 mapImagesToRegion(NE);
@@ -188,36 +190,35 @@
 
                 var imgC = document.getElementById("picsTemplate");
 
-                //cleanup previous template contents           
+                //cleanup previous template contents
                 document.getElementById("imgContainer").innerHTML = "";
                 if (regionA.length >= 4) {
                     var arrLength = regionA.length;
                     for (var i = 0; i < arrLength; i++) {
+                        imgC.content.querySelector('img').src = "img/" + regionA[i];
+
+                        //var t = document.getElementById("regTbl").innerHTML;
+
+                        //create a deep copy of the template contents
+                        var clone = document.importNode(imgC.content, true);
+                        //append newly created markup to DOM
+                        //document.body.appendChild(clone);
+                        document.getElementById("imgContainer").appendChild(clone);
                         if (i % 4 === 0 && i !== 0) {
-                            imgC.content.querySelector('img').src = "img/" + regionA[i];
 
-                            //var t = document.getElementById("regTbl").innerHTML;
-
-                            //create a deep copy of the template contents
-                            var clone = document.importNode(imgC.content, true);
-                            //append newly created markup to DOM
-                            //document.body.appendChild(clone);
-                            document.getElementById("imgContainer").appendChild(clone);
                             $("#imgContainer").append("<br>");
-                        
-                            //$('<br/>').appendTo('imgContainer');
                         }
                         else {
-                            imgC.content.querySelector('img').src = "img/" + regionA[i];
+                            //imgC.content.querySelector('img').src = "img/" + regionA[i];
 
-                            //var t = document.getElementById("regTbl").innerHTML;
+                            ////var t = document.getElementById("regTbl").innerHTML;
 
-                            //create a deep copy of the template contents
-                            var clone = document.importNode(imgC.content, true);
-                            //append newly created markup to DOM
-                            //document.body.appendChild(clone);
-                            document.getElementById("imgContainer").appendChild(clone);
-                        }                        
+                            ////create a deep copy of the template contents
+                            //var clone = document.importNode(imgC.content, true);
+                            ////append newly created markup to DOM
+                            ////document.body.appendChild(clone);
+                            //document.getElementById("imgContainer").appendChild(clone);
+                        }
                     }
                 }
                 else {
@@ -234,24 +235,24 @@
                         document.getElementById("imgContainer").appendChild(clone);
                     }
                 }
-                
+
             } else {
 
-            }                        
+            }
         }
 
         ////function that gets image array size
         //function getImgArrSize(imgArray) {
-        //    if (imgArray === "NW") {                
+        //    if (imgArray === "NW") {
         //        _imgSize = NW.length;
         //    }
-        //    else if (imgArray === "NE") {                
+        //    else if (imgArray === "NE") {
         //        _imgSize = NE.length;
         //    }
         //    else if (imgArray === "AFR") {
         //        _imgSize = AFR.length;
         //    }
-        //    else if (imgArray === "EA") {                
+        //    else if (imgArray === "EA") {
         //        _imgSize = EA.length;
         //    }
         //}
