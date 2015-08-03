@@ -195,30 +195,18 @@
                 if (regionA.length >= 4) {
                     var arrLength = regionA.length;
                     for (var i = 0; i < arrLength; i++) {
+                        // this below is used for moving to the next row if current image count is greater than 4 images to keep the layout in-tact.
+                        if (i % 4 === 0 && i !== 0) {
+                            $("#imgContainer").append("<br>");
+                        }
+                        else { }
                         imgC.content.querySelector('img').src = "img/" + regionA[i];
-
-                        //var t = document.getElementById("regTbl").innerHTML;
 
                         //create a deep copy of the template contents
                         var clone = document.importNode(imgC.content, true);
-                        //append newly created markup to DOM
-                        //document.body.appendChild(clone);
+                        //append newly created markup to DOM                        
                         document.getElementById("imgContainer").appendChild(clone);
-                        if (i % 4 === 0 && i !== 0) {
-
-                            $("#imgContainer").append("<br>");
-                        }
-                        else {
-                            //imgC.content.querySelector('img').src = "img/" + regionA[i];
-
-                            ////var t = document.getElementById("regTbl").innerHTML;
-
-                            ////create a deep copy of the template contents
-                            //var clone = document.importNode(imgC.content, true);
-                            ////append newly created markup to DOM
-                            ////document.body.appendChild(clone);
-                            //document.getElementById("imgContainer").appendChild(clone);
-                        }
+                      
                     }
                 }
                 else {
@@ -226,8 +214,6 @@
 
                         imgC.content.querySelector('img').src = "img/" + regionA[i];
 
-                        //var t = document.getElementById("regTbl").innerHTML;
-
                         //create a deep copy of the template contents
                         var clone = document.importNode(imgC.content, true);
                         //append newly created markup to DOM
@@ -236,27 +222,8 @@
                     }
                 }
 
-            } else {
-
-            }
-        }
-
-        ////function that gets image array size
-        //function getImgArrSize(imgArray) {
-        //    if (imgArray === "NW") {
-        //        _imgSize = NW.length;
-        //    }
-        //    else if (imgArray === "NE") {
-        //        _imgSize = NE.length;
-        //    }
-        //    else if (imgArray === "AFR") {
-        //        _imgSize = AFR.length;
-        //    }
-        //    else if (imgArray === "EA") {
-        //        _imgSize = EA.length;
-        //    }
-        //}
-
+            } else { /*if no templates are present, then we do woodo magic*/}
+        }        
     </script>
 </body>
 
