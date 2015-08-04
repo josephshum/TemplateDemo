@@ -139,45 +139,25 @@
                         name: "East Asia",
                         abbr: "EA"
                     }
-                ];
+                ];             
 
-                //var regCont = document.getElementById("regionsTemplate");
-                // var td = regCont.querySelector('td');
-                //document.getElementById("regionsSpace").innerHTML = "";
-
-                for (var k = 0; k < regionsArr.length; k++) {
-                    //_imgSize = getImgArrSize(regionsArr[k].abbr);
+                for (var k = 0; k < regionsArr.length; k++) {                    
                     _imgSize = (function () {
                         if (regionsArr[k].abbr === "NW") {
-                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = NW.length + " " + regionsArr[k].name + " ";
-                            //$(regCont).text( );
-                            //return NW.length;
+                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML =  regionsArr[k].name + " " +NW.length + " ";                 
                         }
                         else if (regionsArr[k].abbr === "NE") {
-                            return NE.length;
+                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + NE.length + " ";
                         }
                         else if (regionsArr[k].abbr === "AFR") {
-                            return AFR.length;
+                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + AFR.length + " ";
                         }
                         else if (regionsArr[k].abbr === "EA") {
-                            return EA.length;
+                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + EA.length + " ";
                         }
                     })();
-
-                    
-                   
-                    //regCont.innerHTML = '<td>' + '<div id="' + regionsArr[k].abbr + '"onclick="fetchImgContainer()">' + regionsArr[k].name + '</div' + '</td>';
-                    //regCont.innerHTML =  + _imgSize + '</span> ' + regionsArr[k].name + '</li>';
-
-                    //regCont.content.querySelector('div').innerHTML = regionsArr[k];
-
-                    var clone = document.importNode(regCont.content, true);
-
-                    document.getElementById('regionsSpace').appendChild(clone);
                 }
-            } else {
-
-            }
+            } else {}
         })();
 
         //function that renders container with images

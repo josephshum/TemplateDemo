@@ -163,7 +163,8 @@
                         }
                     })();                   
                     
-                    $(regCont).html('<span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + " " + _imgSize + '</span> ' + regionsArr[k].name + " ");
+                    //$(regCont).html('<span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + " " + _imgSize + '</span> ' + regionsArr[k].name + " ");
+                    $(regCont).html('<span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + " " + regionsArr[k].name + " " + _imgSize + " " +'</span> ');
 
                     var clone = document.importNode(regCont.content, true);
 
