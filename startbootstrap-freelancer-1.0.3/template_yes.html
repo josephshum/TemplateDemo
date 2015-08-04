@@ -77,7 +77,11 @@
     <!--<button type ="button" onclick="fetchImgContainer()">show images</button>-->
     <!--this template is used to host regions -->
     <template id="regionsTemplate">
-        <ul class="list-group"></ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span onclick="fetchImgContainer()" class="badge"></span>
+            </li>        
+        </ul>
     </template>
 
     <!--this template is used to host pictures -->
@@ -98,10 +102,12 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-        var NW = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg", ];
+        var NW = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg"];
         var NE = ["ne1.jpg", "ne2.jpg", "ne3.jpg", "ne4.jpg", "ne5.jpg", "ne6.jpg", "ne7.jpg" ];
         var AFR = ["afr1.jpg", "afr2.jpg", "afr3.jpg", "afr4.jpg", "afr5.jpg", "afr6.jpg"];
         var EA = ["ea1.jpg", "ea2.png", "ea3.jpg", "ea4.jpg", "ea5.jpg", "ea6.jpg"];
+        var ALL = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg", "ne1.jpg", "ne2.jpg", "ne3.jpg", "ne4.jpg", "ne5.jpg", "ne6.jpg", "ne7.jpg",
+            "afr1.jpg", "afr2.jpg", "afr3.jpg", "afr4.jpg", "afr5.jpg", "afr6.jpg", "ea1.jpg", "ea2.png", "ea3.jpg", "ea4.jpg", "ea5.jpg", "ea6.jpg"]
 
         var _imgSize;
 
@@ -126,6 +132,10 @@
                     {
                         name: "East Asia",
                         abbr: "EA"
+                    },
+                    {
+                        name: "Show All",
+                        abbr: "ALL"
                     }
                 ];
 
@@ -148,15 +158,16 @@
                         else if (regionsArr[k].abbr === "EA") {
                             return EA.length;
                         }
-                    })();
-                    //regCont.innerHTML = '<td>' + '<div id="' + regionsArr[k].abbr + '"onclick="fetchImgContainer()">' + regionsArr[k].name + '</div' + '</td>';
-                    regCont.innerHTML = '<li class="list-group-item"><span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + _imgSize + '</span> ' + regionsArr[k].name + '</li>';
-
-                    //regCont.content.querySelector('div').innerHTML = regionsArr[k];
+                        else if (regionsArr[k].abbr === "ALL") {
+                            return ALL.length;
+                        }
+                    })();                   
+                    
+                    $(regCont).html('<span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + " " + _imgSize + '</span> ' + regionsArr[k].name + " ");
 
                     var clone = document.importNode(regCont.content, true);
 
-                    document.getElementById('regionsSpace').appendChild(clone);
+                    document.getElementById('regionsSpace').appendChild(clone);                    
                 }
             } else {
 
@@ -182,6 +193,10 @@
                 mapImagesToRegion(EA);
                 _imgSize = EA.length;
             }
+            else if (event.target.id === "ALL") {
+                mapImagesToRegion(ALL);
+                _imgSize = ALL.length;
+            }
         }
 
         //this function maps regions of where the images were taken to the server image location
@@ -205,8 +220,7 @@
                         //create a deep copy of the template contents
                         var clone = document.importNode(imgC.content, true);
                         //append newly created markup to DOM                        
-                        document.getElementById("imgContainer").appendChild(clone);
-                      
+                        document.getElementById("imgContainer").appendChild(clone);                      
                     }
                 }
                 else {
@@ -221,7 +235,8 @@
                         document.getElementById("imgContainer").appendChild(clone);
                     }
                 }
-            } else { /*if no templates are present, then we do woodo magic*/}
+
+            } else { /*if no templates are present, then we do woodo magic*/ }
         }        
     </script>
 </body>

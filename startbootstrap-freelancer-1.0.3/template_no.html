@@ -60,7 +60,23 @@
         </div>
         <div class="jumbotron">
             <div id="regionsSpace">
-
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span onclick="fetchImgContainer()" id="NW" class="badge"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span onclick="fetchImgContainer()" id="NE" class="badge"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span onclick="fetchImgContainer()" id="AFR" class="badge"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span onclick="fetchImgContainer()" id="EA" class="badge"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span onclick="fetchImgContainer()" id="ALL" class="badge"></span>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="jumbotron">
@@ -74,15 +90,7 @@
 
     <br /><br /><br />
 
-    <!--<button type ="button" onclick="fetchImgContainer()">show images</button>-->
-    <!--this template is used to host regions -->
-    <template id="regionsTemplate">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <span onclick="fetchImgContainer()" class="badge"></span>
-            </li>        
-        </ul>
-    </template>
+  
 
     <!--this template is used to host pictures -->
     <template id="picsTemplate">
@@ -102,12 +110,10 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-        var NW = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg"];
+        var NW = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg", ];
         var NE = ["ne1.jpg", "ne2.jpg", "ne3.jpg", "ne4.jpg", "ne5.jpg", "ne6.jpg", "ne7.jpg" ];
         var AFR = ["afr1.jpg", "afr2.jpg", "afr3.jpg", "afr4.jpg", "afr5.jpg", "afr6.jpg"];
         var EA = ["ea1.jpg", "ea2.png", "ea3.jpg", "ea4.jpg", "ea5.jpg", "ea6.jpg"];
-        var ALL = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg", "ne1.jpg", "ne2.jpg", "ne3.jpg", "ne4.jpg", "ne5.jpg", "ne6.jpg", "ne7.jpg",
-            "afr1.jpg", "afr2.jpg", "afr3.jpg", "afr4.jpg", "afr5.jpg", "afr6.jpg", "ea1.jpg", "ea2.png", "ea3.jpg", "ea4.jpg", "ea5.jpg", "ea6.jpg"]
 
         var _imgSize;
 
@@ -132,22 +138,20 @@
                     {
                         name: "East Asia",
                         abbr: "EA"
-                    },
-                    {
-                        name: "Show All",
-                        abbr: "ALL"
                     }
                 ];
 
-                var regCont = document.getElementById("regionsTemplate");
+                //var regCont = document.getElementById("regionsTemplate");
                 // var td = regCont.querySelector('td');
-                document.getElementById("regionsSpace").innerHTML = "";
+                //document.getElementById("regionsSpace").innerHTML = "";
 
                 for (var k = 0; k < regionsArr.length; k++) {
                     //_imgSize = getImgArrSize(regionsArr[k].abbr);
                     _imgSize = (function () {
                         if (regionsArr[k].abbr === "NW") {
-                            return NW.length;
+                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = NW.length + " " + regionsArr[k].name + " ";
+                            //$(regCont).text( );
+                            //return NW.length;
                         }
                         else if (regionsArr[k].abbr === "NE") {
                             return NE.length;
@@ -158,26 +162,18 @@
                         else if (regionsArr[k].abbr === "EA") {
                             return EA.length;
                         }
-                        else if (regionsArr[k].abbr === "ALL") {
-                            return ALL.length;
-                        }
                     })();
+
+                    
+                   
                     //regCont.innerHTML = '<td>' + '<div id="' + regionsArr[k].abbr + '"onclick="fetchImgContainer()">' + regionsArr[k].name + '</div' + '</td>';
-                    
-                    var span = document.querySelector('span');
-                    span.id = '"' + regionsArr[k].abbr + '"';
-                    var txt = document.createTextNode(regionsArr[k].name + "  " + _imgSize);
-                    span.innerText = txt.textContent;
-                    
-                    //regCont.inner = 'id="' + regionsArr[k].abbr + '"' + 'class="badge">' + _imgSize + '</span> ' + " " + regionsArr[k].name;
-                                        
+                    //regCont.innerHTML =  + _imgSize + '</span> ' + regionsArr[k].name + '</li>';
+
+                    //regCont.content.querySelector('div').innerHTML = regionsArr[k];
+
                     var clone = document.importNode(regCont.content, true);
 
                     document.getElementById('regionsSpace').appendChild(clone);
-
-                    
-                    
-                    
                 }
             } else {
 
@@ -202,10 +198,6 @@
             else if (event.target.id === "EA") {
                 mapImagesToRegion(EA);
                 _imgSize = EA.length;
-            }
-            else if (event.target.id === "ALL") {
-                mapImagesToRegion(ALL);
-                _imgSize = ALL.length;
             }
         }
 
@@ -246,8 +238,7 @@
                         document.getElementById("imgContainer").appendChild(clone);
                     }
                 }
-
-            } else { /*if no templates are present, then we do woodo magic*/ }
+            } else { /*if no templates are present, then we do woodo magic*/}
         }        
     </script>
 </body>
