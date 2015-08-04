@@ -68,9 +68,32 @@
             </div>
         </div>
         <div class="jumbotron">
-            <div id="imgContainer">
-                <table>
-                    <tr></tr>
+            <div id="imgContainer">                
+                <table id="NW" hidden>
+                    <tr>
+                        <td>
+                            <img src="img/nw1.jpg" alt="image">
+                            <div class="comment"></div>
+                        </td>
+                        <td>
+                            <img src="img/nw2.jpg" alt="image">
+                            <div class="comment"></div>
+                        </td>
+                        <td>
+                            <img src="img/nw3.jpg" alt="image">
+                            <div class="comment"></div>
+                        </td>
+                        <td>
+                            <img src="img/nw4.jpg" alt="image">
+                            <div class="comment"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="img/nw5.jpg" alt="image">
+                            <div class="comment"></div>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -80,12 +103,12 @@
   
 
     <!--this template is used to host pictures -->
-    <template id="picsTemplate">
+    <!--<template id="picsTemplate">
         <td>
             <img src="" alt="image">
             <div class="comment"></div>
         </td>
-    </template>
+    </template>-->
 
 
     <!--<div id="imgContainer">
@@ -161,21 +184,23 @@
         function fetchImgContainer() {
             //populate the sources at run time
             if (event.target.id === "NW") {
-                mapImagesToRegion(NW);
-                _imgSize = NW.length;
+
+                $(event.target.id).show();
+                //mapImagesToRegion(NW);
+                //_imgSize = NW.length;
             }
-            else if (event.target.id === "NE") {
-                mapImagesToRegion(NE);
-                _imgSize = NE.length;
-            }
-            else if (event.target.id === "AFR") {
-                mapImagesToRegion(AFR);
-                _imgSize = AFR.length;
-            }
-            else if (event.target.id === "EA") {
-                mapImagesToRegion(EA);
-                _imgSize = EA.length;
-            }
+            //else if (event.target.id === "NE") {
+            //    mapImagesToRegion(NE);
+            //    _imgSize = NE.length;
+            //}
+            //else if (event.target.id === "AFR") {
+            //    mapImagesToRegion(AFR);
+            //    _imgSize = AFR.length;
+            //}
+            //else if (event.target.id === "EA") {
+            //    mapImagesToRegion(EA);
+            //    _imgSize = EA.length;
+            //}
         }
 
         //this function maps regions of where the images were taken to the server image location
@@ -199,8 +224,7 @@
                         //create a deep copy of the template contents
                         var clone = document.importNode(imgC.content, true);
                         //append newly created markup to DOM                        
-                        document.getElementById("imgContainer").appendChild(clone);
-                      
+                        document.getElementById("imgContainer").appendChild(clone);                      
                     }
                 }
                 else {
