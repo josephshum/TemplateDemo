@@ -59,24 +59,12 @@
             </p>-->
         </div>
         <div class="jumbotron">
-            <div id="regionsSpace">
-                <ul class="list-group">
-                    <li class="list-group-item">
+            <div id="regionsSpace">                                      
                         <span onclick="fetchImgContainer()" id="NW" class="badge"></span>
-                    </li>
-                    <li class="list-group-item">
                         <span onclick="fetchImgContainer()" id="NE" class="badge"></span>
-                    </li>
-                    <li class="list-group-item">
                         <span onclick="fetchImgContainer()" id="AFR" class="badge"></span>
-                    </li>
-                    <li class="list-group-item">
                         <span onclick="fetchImgContainer()" id="EA" class="badge"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <span onclick="fetchImgContainer()" id="ALL" class="badge"></span>
-                    </li>
-                </ul>
+                        <span onclick="fetchImgContainer()" id="ALL" class="badge"></span>                        
             </div>
         </div>
         <div class="jumbotron">
@@ -89,7 +77,6 @@
     </div>
 
     <br /><br /><br />
-
   
 
     <!--this template is used to host pictures -->
@@ -114,6 +101,8 @@
         var NE = ["ne1.jpg", "ne2.jpg", "ne3.jpg", "ne4.jpg", "ne5.jpg", "ne6.jpg", "ne7.jpg" ];
         var AFR = ["afr1.jpg", "afr2.jpg", "afr3.jpg", "afr4.jpg", "afr5.jpg", "afr6.jpg"];
         var EA = ["ea1.jpg", "ea2.png", "ea3.jpg", "ea4.jpg", "ea5.jpg", "ea6.jpg"];
+        var ALL = ["nw1.jpg", "nw2.jpg", "nw3.jpg", "nw4.jpg", "nw5.jpg", "ne1.jpg", "ne2.jpg", "ne3.jpg", "ne4.jpg", "ne5.jpg", "ne6.jpg", "ne7.jpg",
+            "afr1.jpg", "afr2.jpg", "afr3.jpg", "afr4.jpg", "afr5.jpg", "afr6.jpg", "ea1.jpg", "ea2.png", "ea3.jpg", "ea4.jpg", "ea5.jpg", "ea6.jpg"];
 
         var _imgSize;
 
@@ -139,21 +128,29 @@
                         name: "East Asia",
                         abbr: "EA"
                     }
+                    ,
+                    {
+                        name: "Show All",
+                        abbr: "ALL"
+                    }
                 ];             
 
+                //var parent = document.createElement('<ul class="list-group" id="regionSpcList">')
                 for (var k = 0; k < regionsArr.length; k++) {                    
                     _imgSize = (function () {
                         if (regionsArr[k].abbr === "NW") {
-                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML =  regionsArr[k].name + " " +NW.length + " ";                 
+                            document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + NW.length + " ";
                         }
                         else if (regionsArr[k].abbr === "NE") {
-                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + NE.length + " ";
+                            document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + NE.length + " ";
                         }
                         else if (regionsArr[k].abbr === "AFR") {
-                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + AFR.length + " ";
+                            document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + AFR.length + " ";
                         }
                         else if (regionsArr[k].abbr === "EA") {
-                            regCont = document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + EA.length + " ";
+                            document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + EA.length + " ";
+                        } else if (regionsArr[k].abbr === "ALL") {
+                            document.getElementById(regionsArr[k].abbr).innerHTML = regionsArr[k].name + " " + ALL.length + " ";
                         }
                     })();
                 }

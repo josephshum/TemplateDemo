@@ -60,7 +60,6 @@
         </div>
         <div class="jumbotron">
             <div id="regionsSpace">
-
             </div>
         </div>
         <div class="jumbotron">
@@ -77,11 +76,7 @@
     <!--<button type ="button" onclick="fetchImgContainer()">show images</button>-->
     <!--this template is used to host regions -->
     <template id="regionsTemplate">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <span onclick="fetchImgContainer()" class="badge"></span>
-            </li>        
-        </ul>
+        
     </template>
 
     <!--this template is used to host pictures -->
@@ -162,8 +157,7 @@
                             return ALL.length;
                         }
                     })();                   
-                    
-                    //$(regCont).html('<span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + " " + _imgSize + '</span> ' + regionsArr[k].name + " ");
+                                        
                     $(regCont).html('<span onclick="fetchImgContainer()" id="' + regionsArr[k].abbr + '"' + 'class="badge">' + " " + regionsArr[k].name + " " + _imgSize + " " +'</span> ');
 
                     var clone = document.importNode(regCont.content, true);
